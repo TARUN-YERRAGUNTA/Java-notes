@@ -1,0 +1,61 @@
+                                                                      ARRAY TECHNOLOGIES
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.1 Two Pointers - Opposite ends
+
+idea - Place one pointer say Left at the start of the Array and place another pointer at the end of the Array. Move both the pointer towards each other untill Left<Right.
+
+example: Two Sum - Given a target value and a sorted array, find the two numbers where the sum equals the target value
+
+int left=0;
+int right = arr.length-1;
+
+while(left<right){
+  if(arr[left]+arr[right]==target){
+    return new int[] {left,right}
+  }else if(arr[left]+arr[right]>target){
+    end=end-1;
+  }else{
+    start=start+1
+  }
+}
+return new int[] {-1,-1}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.2 two Pointers - Same Direction
+
+idea - Place one pointer ats start and another pointer at either start or start+1 and the last pointer is used for scan and first pointer is used to rewrite
+
+example: Move duplicates to the last position of Array an return upto distinct numbers in the Array.
+
+int left=0;   // declaring and initializing the left pointer at the start of the array
+for(int right=1;right<arr.length;right++){ // second pointer is placed at 1st index and the index is moving towards end of the array
+  if(arr[left]!=arr[right]){ // whenever left == right , then right moves 1 index to right, if left != right then that means a new distinct element is found then it should be swapped with
+    left++;                  // left +1 element becuase left is already a distinct element
+    swap(arr,left,right);
+  }
+}
+return left+1;  
+
+
+example : Move the target number to last place of the array
+
+int left = 0;
+for(int right=0;right<arr.length;right++){ // using right=0 bcoz the target number could also be the first element, right=0 makes a check for first element
+  if(arr[right]!=target){ // whenever arr[right]!=target, then that means if should be swapped with left element which either be in the right position if there is no target value present
+    swap(arr,left,right); // till the right index and once there is a target value in the middle, left ++ is going to get skipped and left contains the target position annd it is swapped 
+    left++;               // with right so that it moves to the last index.
+  }
+}
+
+return left;
+
+
+
+
+
+
+
+
+
+
+
